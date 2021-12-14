@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/fragments::head"></head>
+<body>
+<!--Custome Navigation on user Authorize-->
+<th:block sec:authorize="hasRole('ADMIN')">
+    <header th:replace="fragments/fragments::navigation-admin"></header>
+</th:block>
+<th:block sec:authorize="hasRole('MODERATOR')">
+    <header th:replace="fragments/fragments::navigation-moderator"></header>
+</th:block>
+<!--Custome Navigation on user Authorize-->
+
+<div class="container text-light position-static">
+    <h1 class="display-3 text-center"><b>ADD STORE</b></h1>
+</div>
+
+<div class="container bg-blur rounded p-5 mt-5 w-75">
+    <h4 class="text-light text-center" >Fill the form to create a Store</h4>
+    <hr class="bg-light">
+
+    <form th:action="@{/stores/add}" th:method="POST" th:object="${storeAddBindingModel}"
+          class=" text-center text-light">
+        <h3 class="mt-5 text-center">
+            <strong  th:if="${nameExist==true}" class="rounded  pl-3 text-danger">Store with that name already exists.</strong>
+        </h3>
+        <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">Store name</label>
+            <div class="col-sm-10">
+                <input th:field="*{name}" th:errorclass="is-invalid" type="text" minlength="5" maxlength="35" class="form-control" id="name"
+                       aria-describedby="nameHelpInline" placeholder="Store-name">
+                <small id="nameHelpInline" class="invalid-feedback bg-danger text-light rounded">
+                    Product name must be between 5 and 35 characters.
+                </small>
+
+            </div>
+            </div>
+        <div class="form-group row">
+            <label for="address" class="col-sm-2 col-form-label">Store address</label>
+            <div class="col-sm-10">
+                <input th:field="*{address}" th:errorclass="is-invalid" type="text" minlength="5" maxlength="50" class="form-control" id="address"
+                        aria-describedby="addressHelpInline" placeholder="Store-address">
+                <small id="addressHelpInline" class="invalid-feedback bg-danger text-light rounded">
+                    Address must be between 5 and 50 characters.
+                </small>
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="url" class="col-sm-2 col-form-label">Picture URL</label>
+            <div class="col-sm-10">
+                <input th:field="*{url}" th:errorclass="is-invalid"  type="text" minlength="5"  class="form-control" id="url"
+                        aria-describedby="urlHelpInline" placeholder="Product-name">
+                <small id="urlHelpInline" class="invalid-feedback bg-danger text-light rounded">
+                    URL must be more than 5 symbols.
+                </small>
+
+            </div>
+        </div>
+        <p></p>
+        <button type="submit" class="btn btn-info w-50">Create New Store</button>
+    </form>
+    <hr class="bg-light">
+</div>
+
+
+<footer th:replace="fragments/fragments::footer"></footer>
+</body>
+</html>

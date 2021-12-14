@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/fragments::head"></head>
+<body>
+<!--Custome Navigation on user Authorize-->
+<th:block sec:authorize="hasRole('ADMIN')">
+    <header th:replace="fragments/fragments::navigation-admin"></header>
+</th:block>
+<!--Custome Navigation on user Authorize-->
+
+<div class="container text-light position-static ">
+    <h1 class="display-3 text-center"><b>ORDER LOGS</b></h1>
+</div>
+
+<div class="form-group row" >
+    <div class="col-sm-10" id="inputContainer">
+
+    </div>
+</div>
+
+<script th:src="@{/js/addingInformationFromRest.js}"></script>
+<p></p>
+</body>
+<footer th:replace="fragments/fragments::footer">
+</footer>
+</html>

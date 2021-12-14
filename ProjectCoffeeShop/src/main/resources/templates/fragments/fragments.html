@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
+
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Barista_Shop</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/mobile.css">
+</head>
+
+<header th:fragment="navigation">
+    <nav class="main-nav">
+        <ul>
+<!--        ADMIN NAVIGATION-->
+         <th:block  sec:authorize="hasRole('ADMIN')">
+             <li><a href="/panel/admin">Admin Panel</a></li>
+
+         </th:block>
+<!--        USER NAVIGATION-->
+<!--            MODERATOR NAVIGATION-->
+        <th:block sec:authorize="hasRole('MODERATOR')">
+            <li><a href="/panel/moderator">Moderator Panel</a></li>
+
+        </th:block>
+
+<!--            navigation for not logged users-->
+            <th:block sec:authorize="isAnonymous()" >
+
+                <li><a href="/">Home</a></li>
+                <li><a href="/users/register">Register</a></li>
+                <li><a href="/users/login">Login</a></li>
+                <li><a href="/products/all">Products</a></li>
+                <li><a href="/about">About us</a></li>
+
+
+            </th:block>
+<!--                        navigation for NOT logged users-->
+<!--                        navigation for logged users-->
+            <th:block sec:authorize="isAuthenticated()" >
+
+                <li><a href="/">Home</a></li>
+                <li><a href="/users/profile">Profile</a></li>
+                <li><a href="/stores/all">Stores</a></li>
+                <li><a href="/products/all">Products</a></li>
+                <li><a href="/orders/add">Make order</a></li>
+                <li><form  th:action="@{/users/logout}" th:method="POST">
+                    <input class="btn  btn-link nav-link main-nav " type="submit" value="Logout">
+                </form></li>
+
+            </th:block>
+
+
+        </ul>
+    </nav>
+</header>
+<header th:fragment="navigation-admin">
+    <nav class="main-nav">
+    <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/users/manage-users">Manage Users</a></li>
+    <li><a href="/products/add">Add Product</a></li>
+    <li><a href="/stores/add">Add Store</a></li>
+        <li><a href="/products/delete">Remove Product</a></li>
+        <li><a href="/stores/delete">Remove Store</a></li>
+        <li><a href="/statistics">Statistics</a></li>
+        <li><a href="/logs">Logs</a></li>
+    </ul>
+    </nav>
+
+
+</header>
+
+<header th:fragment="navigation-moderator">
+    <nav class="main-nav">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/products/add">Add Product</a></li>
+            <li><a href="/stores/add">Add Stores</a></li>
+            <li><a href="/products/delete">Remove Product</a></li>
+            <li><a href="/stores/delete">Remove Stores</a></li>
+        </ul>
+    </nav>
+
+
+</header>
+
+
+
+
+
+<footer  th:fragment="footer" class=" footer bg-blur rounded">
+    <div class="container-fluid text-center">
+        <div class="h5 text-center text-light">
+            &copy; Created by iNetzov. <b>BARISTA STORE.</b> All rights reserved.&copy;
+        </div>
+    </div>
+</footer>
+
+
+<body>
+
+</body>
+</html>

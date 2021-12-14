@@ -1,0 +1,33 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/fragments::head"></head>
+<body>
+<div class="wrapper">
+    <header  th:replace="fragments/fragments::navigation" ></header>
+</div>
+<div class="container text-light position-static ">
+    <h1 class="display-3 text-center"><b>Products</b></h1>
+</div>
+<!--element to add-->
+<div id="containerForProducts">
+    <div  th:each="p : ${allProducts}" th:object="${p}" class="card text-light text-center  " style="display: inline-block">
+        <div  class="container">
+            <img th:src="*{getPictureUrl()}" class="resizePhoto" alt="Product" >
+            <h3 th:text="*{name}"><b>name</b></h3>
+            <p th:text="'Price: '+ *{price}+'&euro;'"><b></b></p>
+            <div id="hiddenFields" style="display: none" >
+            <p th:text="*{description}"></p>
+            <p th:text="*{category}"></p>
+            </div>
+            <button  type="button"  class="btn btn-info w-50">More Details</button>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/productsShowMore.js}"></script>
+<p></p>
+</body>
+<footer th:replace="fragments/fragments::footer">
+</footer>
+
+</html>

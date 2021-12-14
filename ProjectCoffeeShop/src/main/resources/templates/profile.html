@@ -1,0 +1,49 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/fragments::head"></head>
+<body>
+<div class="wrapper"><header  th:replace="fragments/fragments::navigation" ></header></div>
+<div class="container text-light position-static ">
+    <h1 class="display-3 text-center"><b>Profile</b></h1>
+</div>
+<div th:object="${profileInfo}" class="container bg-blur rounded p-5 mt-5 w-75 text-center text-light">
+    <hr class="bg-light">
+        <div class="form-group row">
+            <label for="username" class="col-sm-2 col-form-label">Username</label>
+            <div class="col-sm-10">
+                <input type="text" name="username" class="form-control" id="username"
+                       aria-describedby="usernameHelpInline" th:value="*{username}" disabled readonly>
+            </div>
+        </div>
+
+    <div  id="hiddenFields" style="display: none">
+    <div class="form-group row">
+        <label for="fullName" class="col-sm-2 col-form-label">Full Name</label>
+        <div class="col-sm-10">
+            <input type="text" name="fullName" class="form-control" id="fullName"
+                   aria-describedby="fullNameHelpInline" th:value="*{fullName}" disabled readonly>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="email" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+            <input type="text" name="email" class="form-control" id="email"
+                   aria-describedby="emailHelpInline" th:value="*{email}" disabled readonly>
+        </div>
+    </div>
+<!--        <button type="button" th:href="@{/users/profile/edit}" id="editBtn" class="btn btn-info w-50">Edit profile</button>-->
+        <a class="btn btn-info w-50" th:href="@{/users/profile/edit}">Edit profile</a>
+    </div>
+                <p></p>
+                <button type="button" id="profileBtn" class="btn btn-info w-50">Show More</button>
+            </div>
+
+        </div>
+
+
+<script th:src="@{/js/profileShowMore.js}"></script>
+</body>
+<footer th:replace="fragments/fragments::footer">
+</footer>
+</html>

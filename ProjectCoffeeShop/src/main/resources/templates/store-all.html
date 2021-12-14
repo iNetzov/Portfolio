@@ -1,0 +1,30 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/fragments::head"></head>
+<body>
+<div class="wrapper">
+    <header  th:replace="fragments/fragments::navigation" ></header>
+</div>
+<div class="container text-light position-static ">
+    <h1 class="display-3 text-center"><b>Stores</b></h1>
+</div>
+<!--element to add-->
+<div id="containerForStores">
+    <div  th:each="s : ${allStores}" th:object="${s}" class="card text-light text-center" style="display: inline-block">
+        <div  class="container">
+            <img th:src="*{getUrl()}"  class=" resizePhoto " alt="Store" >
+            <h3 th:text="*{name}"><b>name</b></h3>
+            <div id="hiddenFields" style="display: none" >
+                <p th:text="*{address}"></p>
+            </div>
+            <button  type="button"  class="btn btn-info w-50">Show Address</button>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/StoresShowMore.js}"></script>
+</body>
+<footer th:replace="fragments/fragments::footer">
+</footer>
+
+</html>
